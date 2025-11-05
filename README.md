@@ -1,4 +1,4 @@
-i# 🔬 Reflective Research Agent
+# 🔬 Reflective Research Agent
 
 A multi-agent AI system that conducts comprehensive research using specialized AI agents that collaborate to gather, analyze, critique, and write detailed research reports.
 
