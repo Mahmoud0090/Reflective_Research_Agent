@@ -1,6 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, field_validator
 from crewai import Crew, Process
 from app.agents.researcher import create_researcher
 from app.agents.analyzer import create_analyzer
@@ -35,7 +35,8 @@ app.add_middleware(
 class ResearchQuery(BaseModel):
     query: str
     
-    @validator('query')
+    @field_validator('query')
+    @classmethod
     def query_must_not_be_empty(cls, v):
         if not v or not v.strip():
             raise ValueError('Query cannot be empty')
@@ -103,3 +104,4 @@ def research(query: ResearchQuery):
             status_code=500,
             detail="Research failed. Please try again or contact support."
         )
+
